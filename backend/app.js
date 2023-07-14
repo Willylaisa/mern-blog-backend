@@ -62,7 +62,7 @@ app.post('/login', (req, res) => {
                     return res.redirect('https://mern-blog-y6oh.onrender.com/')
                 }                
             }
-            res.send('<h1>Error: Invalid Credentials</h1>')
+            res.send('<h1>Error: Email and password don\'t match</h1> <h3>Please go back and sign up if you do not have an account</h3>')
         })  
 })
 
@@ -74,7 +74,7 @@ const signUpValidator = (req, res, next) => {
     const errors = req.validationErrors()
     if (errors) {
         const firstError = errors.map((error) => error.msg)[0]
-        return res.status(400).json({error: firstError});
+        return res.status(400).send(`<h1>error: ${firstError}</h1>`);
     }
     next()
 }
@@ -90,5 +90,8 @@ app.post('/signup', signUpValidator, (req, res)=> {
         let newuser = new newUser({username, email, password})
         newuser.save()
         .then(res.redirect('https://mern-blog-y6oh.onrender.com/'))
+    }
+    else {
+        res.send('<h1>Passwords do not match!</h1> <h3>Please go back and sign up again<h3>')
     }
 })
