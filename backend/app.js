@@ -59,7 +59,7 @@ app.post('/login', (req, res) => {
         .then(() => {
             for (let i = 0; i < secretInfo.length; i++) {
                 if (secretInfo[i].email === email && secretInfo[i].password === password) {
-                    return res.redirect('http://localhost:3000/')
+                    return res.redirect('https://mern-blog-y6oh.onrender.com/')
                 }                
             }
             res.send('<h1>Error: Invalid Credentials</h1>')
@@ -89,6 +89,6 @@ app.post('/signup', signUpValidator, (req, res)=> {
     if (password === Confirm_password) {
         let newuser = new newUser({username, email, password})
         newuser.save()
-        .then(res.redirect('http://localhost:3000/'))
+        .then(res.redirect('https://mern-blog-y6oh.onrender.com/'))
     }
 })
