@@ -74,7 +74,7 @@ const signUpValidator = (req, res, next) => {
     const errors = req.validationErrors()
     if (errors) {
         const firstError = errors.map((error) => error.msg)[0]
-        return res.status(400).send(`<h1>error: ${firstError}</h1>`);
+        return res.status(400).send(`<h1>Error: ${firstError}</h1>`);
     }
     next()
 }
